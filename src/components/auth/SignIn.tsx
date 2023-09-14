@@ -65,7 +65,7 @@ function SignIn({ setShowLogin }: AuthenticationProps) {
         {/*Register button*/}
         <div className="text-center mt-14 text-xl">
           <span>
-            Don't have an account? &nbsp;
+            Don't have an account?{` `}
             <button
               className="text-gray-400 hover:underline"
               onClick={() => setShowLogin(false)}
