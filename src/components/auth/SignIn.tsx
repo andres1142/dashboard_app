@@ -50,14 +50,29 @@ function SignIn({ setShowLogin }: AuthenticationProps) {
           </label>
         </div>
 
-        <div className="mt-10 flex justify-around">
+        {/*Submit button*/}
+        <div className="flex justify-center items-center mt-10  ">
           <input className="form-button w-32 " type="submit" value="Sign In" />
-          <button
-            className="form-button w-32 "
-            onClick={() => setShowLogin(false)}
-          >
-            Register
-          </button>
+        </div>
+
+        {/*Division*/}
+        <div className="mt-14 flex justify-around items-center">
+          <div className="w-32 h-1 bg-primary_purple rounded-full" />
+          <span>Or</span>
+          <div className="w-32 h-1 bg-primary_purple rounded-full" />
+        </div>
+
+        {/*Register button*/}
+        <div className="text-center mt-14 text-xl">
+          <span>
+            Don't have an account? &nbsp;
+            <button
+              className="text-gray-400 hover:underline"
+              onClick={() => setShowLogin(false)}
+            >
+              Register
+            </button>
+          </span>
         </div>
       </form>
     </AuthContainer>
