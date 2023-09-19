@@ -2,6 +2,7 @@
 import React from "react";
 import useAuth from "@/context/useAuth";
 import { redirect } from "next/navigation";
+import { EmptyWidget } from "@/components";
 
 function LandingPage() {
   const { authStatus } = useAuth();
@@ -12,8 +13,8 @@ function LandingPage() {
   }
 
   return (
-    <div>
-      <h1 className="text-5xl">Welcome to Your Dashboard</h1>
+    <div className="flex h-screen justify-center mt-20">
+      <EmptyWidget />
     </div>
   );
 }
