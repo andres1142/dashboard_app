@@ -23,3 +23,10 @@ body {
 .form-button {
   @apply h-10 rounded-lg bg-primary_purple font-motivaRegular text-xl text-secondary_purple-200 hover:bg-primary_purple-100 hover:text-primary_purple;
 }
+
+/*Widget Icons*/
+
+/*Weekly Icon*/
+.widget-weekly-container {
+  @apply bg-primary_purple-100 border-2 border-primary_purple w-1/2 h-2/3 drop-shadow-lg;
+}
