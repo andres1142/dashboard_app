@@ -1,19 +1,26 @@
 "use client";
 import { useState } from "react";
-import Instructions from "../common/Instructions";
+import InstructionsContainer from "../common/InstructionsContainer";
+import { WeeklyToDoInstructions } from "../common/WidgetInstructions";
 
-function WeeklyToDo() {
-  const [showCreateModal, setShowCreateModal] = useState(false);
+interface WidgetListModalProps {
+  setInstructions: (instructions: React.JSX.Element) => void;
+  handleShowInstructions: () => void;
+}
+
+function WeeklyToDo({ setInstructions, handleShowInstructions }: WidgetListModalProps) {
+  const [showCreateModal, setShowCreateModal] = useState(false); //TODO: Remove this
+
 
   function handleShowCreateModal() {
-    setShowCreateModal(!showCreateModal);
+    setInstructions(<InstructionsContainer widgetInstructions={WeeklyToDoInstructions} handleShowInstructions={handleShowInstructions} />);
   }
 
   return (
     <>
       <button
         className="relative flex flex-wrap gap-5 justify-around items-center w-2/6 h-36 mx-2 bg-secondary_purple-200 
-      rounded-xl shadow-xl overflow-hidden font-motivaLigthItalic"
+      rounded-xl shadow-xl overflow-hidden font-motivaLigthItalic hover:cursor-pointer "
         onClick={handleShowCreateModal}
       >
         <div
@@ -58,10 +65,9 @@ function WeeklyToDo() {
           <span className="widget-weekly-text">Wednesday</span>
         </div>
       </button>
-
-      {/*Controls modal*/ showCreateModal && <Instructions />}
     </>
   );
+
 }
 
 export default WeeklyToDo;
