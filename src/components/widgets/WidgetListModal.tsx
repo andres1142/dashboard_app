@@ -1,6 +1,4 @@
-import { useState } from "react";
-import Link from "next/link";
-import WeeklyToDo from "./items/WeeklyToDo";
+import WeeklyToDo from "./items/WeeklyTodoWidget/WeeklyToDo";
 import BlurBackground from "./common/BlurBackground";
 
 interface WidgetListModalProps {
@@ -20,7 +18,10 @@ function WidgetListModal({
       <div className="w-1/2 inline-block bg-secondary_purple rounded-lg px-4 pt-5 pb-4 shadow-xl transform transition-all delay-1000">
         <div className="flex flex-wrap justify-center gap-x-10 h-full w-full relative  pb-20 pt-10">
           {/*Close Button*/}
-          <WeeklyToDo setInstructions={setInstructions} handleShowInstructions={handleShowInstructions}/>
+          <WeeklyToDo
+            setInstructions={setInstructions}
+            handleShowInstructions={handleShowInstructions}
+          />
           <button
             onClick={handleShowAddModal}
             className="absolute bottom-5 right-5 form-button w-24"

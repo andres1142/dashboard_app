@@ -1,17 +1,22 @@
 "use client";
 import { useState } from "react";
-import InstructionsContainer from "../common/InstructionsContainer";
-import { WeeklyToDoInstructions } from "../common/WidgetInstructions";
+import WeeklyToDoInstructions from "./WeeklyToDoInstruction";
 
 interface WidgetListModalProps {
   setInstructions: (instructions: React.JSX.Element) => void;
+  handleShowInstructions: () => void;
 }
 
-function WeeklyToDo({ setInstructions }: WidgetListModalProps) {
-  const [showCreateModal, setShowCreateModal] = useState(false);
+function WeeklyToDo({
+  setInstructions,
+  handleShowInstructions,
+}: WidgetListModalProps) {
+  const [showCreateModal, setShowCreateModal] = useState(false); //TODO: Remove this
 
   function handleShowCreateModal() {
-    setInstructions(<InstructionsContainer widgetInstructions={WeeklyToDoInstructions}/>);
+    setInstructions(
+      <WeeklyToDoInstructions handleShowInstructions={handleShowInstructions} />
+    );
   }
 
   return (
@@ -65,7 +70,6 @@ function WeeklyToDo({ setInstructions }: WidgetListModalProps) {
       </button>
     </>
   );
-
 }
 
 export default WeeklyToDo;
