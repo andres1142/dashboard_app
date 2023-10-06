@@ -139,6 +139,7 @@ function CreateCategoryModal({
                     className="form-button w-28"
                     onClick={() => {
                       addCategoryToList({
+                        id: categoryList.length + 1,
                         name: categoryName,
                         color: selected,
                       })

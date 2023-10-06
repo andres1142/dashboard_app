@@ -18,12 +18,23 @@ function ColorOptions({ selected, setSelected }: ColorOptionsProps) {
     "#a16800",
   ]
 
+  /**
+   * Dynamicly creates a style object for the category circle.
+   * The style object will have a background color that matches the category color.
+   * If the category is checked, the style object will have a border.
+   *
+   * @param category {name: string, color: string}
+   * @returns {{backgroundColor: string}}
+   */
+
+  function createCategoryStyle(color: string) {
+    return {
+      backgroundColor: color,
+    }
+  }
+
   return (
-    <RadioGroup
-      value={selected}
-      onChange={setSelected}
-      className={"mt-6"}
-    >
+    <RadioGroup value={selected} onChange={setSelected} className={"mt-6"}>
       <div className="flex flex-wrap gap-3 items-center justify-center mx-10 mt-5">
         {colorOptions.map((item) => {
           return (
@@ -31,6 +42,7 @@ function ColorOptions({ selected, setSelected }: ColorOptionsProps) {
               as="div"
               key={item}
               value={item}
+              style={createCategoryStyle(item)}
               className={({ active, checked }) =>
                 `${
                   active
@@ -39,8 +51,8 @@ function ColorOptions({ selected, setSelected }: ColorOptionsProps) {
                 }
             ${
               checked
-                ? `ring-2 ring-white ring-opacity-60 ring-offset-4 ring-offset-secondary_purple-200 opacity-80 bg-[${item}]`
-                : `bg-[${item}]`
+                ? `ring-2 ring-white ring-opacity-60 ring-offset-4 ring-offset-secondary_purple-200 opacity-80`
+                : ""
             }
               relative flex cursor-pointer rounded-lg px-5 py-4 shadow-md focus:outline-none w-14 h-14`
               }

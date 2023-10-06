@@ -1,5 +1,5 @@
 "use client"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import BlurBackground from "../../common/BlurBackground"
 import CreateCategoryModal from "./CreateCategoryModal"
 import { Category } from "@/types"
@@ -12,8 +12,24 @@ function WeeklyToDoInstructions({ handleShowInstructions }: InstructionsProps) {
   const [showCreateCategory, setShowCreateCategory] = useState(false) // State for showing the create category Modal
   const [categoryList, setCategoryList] = useState<Category[]>([]) // State for the list of categories
 
+  /**
+   * Toggles the create category modal.
+   */
   function handleCreateCategoryModal() {
     setShowCreateCategory(!showCreateCategory)
+  }
+
+  /**
+   * Dynamicly creates a style object for the category circle.
+   *
+   * @param category {name: string, color: string}
+   * @returns {{backgroundColor: string}}
+   */
+
+  function createCategoryStyle(category: Category) {
+    return {
+      backgroundColor: category.color,
+    }
   }
 
   return (
@@ -65,11 +81,13 @@ function WeeklyToDoInstructions({ handleShowInstructions }: InstructionsProps) {
                       className={
                         "flex flex-row items-center justify-start gap-2"
                       }
+                      key={category.id}
                     >
-                      <div
-                        className={`bg-[${category.color}] w-3 h-3 rounded-full`}
-                      />{" "}
                       {/* Circle color*/}
+                      <div
+                        style={createCategoryStyle(category)}
+                        className="w-3 h-3 rounded-full"
+                      />
                       <p className="text-lg text-secondary_purple-200 font-motivaMedium">
                         {category.name}
                       </p>

@@ -6,6 +6,7 @@ export default interface AuthenticationProps {
 
 // Type for the category object
 interface Category {
+  id: number
   name: string
   color: string
 }
