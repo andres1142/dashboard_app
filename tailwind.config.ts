@@ -1,4 +1,4 @@
-import type { Config } from "tailwindcss";
+import type { Config } from "tailwindcss"
 
 const config: Config = {
   content: [
@@ -18,6 +18,21 @@ const config: Config = {
           100: "#393053",
           200: "#18122B",
         },
+        secondary_white: {
+          DEFAULT: "#FFFFFF",
+          100: "#EEEEF1",
+          200: "#D7D7DA",
+        },
+        secondary_gray: {
+          DEFAULT: "#404045",
+          100: "#2C2C2F",
+        },
+        secondary_pink: {
+          DEFAULT: "#FE356D",
+        },
+        primary_black: {
+          DEFAULT: "#131315",
+        },
       },
       fontFamily: {
         motivaBold: "var(--font-motivaBold)",
@@ -30,5 +45,5 @@ const config: Config = {
     },
   },
   plugins: [],
-};
-export default config;
+}
+export default config

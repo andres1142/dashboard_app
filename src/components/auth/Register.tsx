@@ -1,36 +1,36 @@
-"use client";
-import { useRouter } from "next/navigation";
-import { useState, FormEvent } from "react";
-import { ArrowLongLeftIcon } from "@heroicons/react/24/solid";
-import appwriteService from "@/appwrite/config";
-import AuthenticationProps from "@/types";
-import AuthContainer from "./AuthContainer";
-import useAuth from "@/context/useAuth";
+"use client"
+import { useRouter } from "next/navigation"
+import { useState, FormEvent } from "react"
+import { ArrowLongLeftIcon } from "@heroicons/react/24/solid"
+import appwriteService from "@/appwrite/config"
+import AuthenticationProps from "@/types"
+import AuthContainer from "./AuthContainer"
+import useAuth from "@/context/useAuth"
 
 function Register({ setShowLogin }: AuthenticationProps) {
-  const { setAuthStatus } = useAuth();
-  const router = useRouter();
+  const { setAuthStatus } = useAuth()
+  const router = useRouter()
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordConfirm, setPasswordConfirm] = useState("");
-  const [error, setError] = useState("");
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [passwordConfirm, setPasswordConfirm] = useState("")
+  const [error, setError] = useState("")
 
   async function createAccount(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+    e.preventDefault()
     try {
       const session = await appwriteService.createUserAccount({
         name,
         email,
         password,
-      });
+      })
       if (session) {
-        setAuthStatus(true);
-        router.replace("/");
+        setAuthStatus(true)
+        router.replace("/")
       }
     } catch (error: any) {
-      console.log(error);
+      console.log(error)
     }
   }
 
@@ -41,16 +41,16 @@ function Register({ setShowLogin }: AuthenticationProps) {
    */
   function verifyData() {
     if (password !== passwordConfirm) {
-      setError("Passwords must match");
-      return false;
+      setError("Passwords must match")
+      return false
     }
     if (password.length < 8) {
-      setError("Password must be at least 8 characters");
-      return false;
+      setError("Password must be at least 8 characters")
+      return false
     }
     if (!email.includes("@")) {
-      setError("Email must be valid");
-      return false;
+      setError("Email must be valid")
+      return false
     }
     if (
       name === "" ||
@@ -58,17 +58,17 @@ function Register({ setShowLogin }: AuthenticationProps) {
       password === "" ||
       passwordConfirm === ""
     ) {
-      setError("All fields must be filled out");
-      return false;
+      setError("All fields must be filled out")
+      return false
     }
-    return true;
+    return true
   }
 
   return (
     <AuthContainer className="relative">
       {/*Back button*/}
       <button onClick={() => setShowLogin(true)}>
-        <ArrowLongLeftIcon className="top-2 left-3 absolute text-secondary_purple-200 h-14 w-14" />
+        <ArrowLongLeftIcon className="top-2 left-3 absolute text-secondary_white-200 h-14 w-14" />
       </button>
       <h3 className="pb-10 text-center font-motivaMedium text-4xl">
         Create Account
@@ -128,7 +128,7 @@ function Register({ setShowLogin }: AuthenticationProps) {
         </div>
       </form>
     </AuthContainer>
-  );
+  )
 }
 
-export default Register;
+export default Register

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  background-color: #18122b;
+  background-color: #131315;
 }
 
 .flex-center {
@@ -17,11 +17,12 @@ body {
 }
 
 .form-input-box {
-  @apply w-4/6 rounded-xl bg-primary_purple-100 px-4  text-secondary_purple-200;
+  @apply w-4/6 rounded-xl bg-secondary_white-200 px-4  text-secondary_purple-200;
 }
 
 .form-button {
-  @apply h-10 rounded-lg bg-primary_purple font-motivaRegular text-xl text-secondary_purple-200 hover:bg-primary_purple-100 hover:text-primary_purple;
+  @apply h-10 rounded-lg bg-secondary_pink font-motivaRegular text-xl text-secondary_white hover:shadow-lg 
+  hover:shadow-secondary_pink/25 hover:cursor-pointer;
 }
 
 /*Widget Icons*/

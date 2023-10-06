@@ -1,15 +1,18 @@
-"use client";
-import { useState } from "react";
-import { SignIn, Register } from "@/components";
+"use client"
+import { useState } from "react"
+import { SignIn, Register } from "@/components"
 
 function Authentication() {
-  const [showLogin, setShowLogin] = useState(true);
+  const [showLogin, setShowLogin] = useState(true)
 
   return (
     <main className="px-40">
       <div className="flex h-screen w-full items-center justify-around gap-10">
-        <section className="flex flex-1 flex-col text-center text-primary_purple gap-5">
-          <h1 className="font-motivaBold text-7xl">Welcome to DashPlan</h1>
+        <section className="flex flex-1 flex-col text-center text-secondary_white-100 gap-5">
+          <h1 className="font-motivaBold text-7xl">Welcome to</h1>{" "}
+          <h1 className="font-motivaBold text-7xl text-secondary_pink">
+            DashPlan
+          </h1>
           <h2 className="font-motivaMedium text-4xl">
             Where Dreams Discover Their Journey
           </h2>
@@ -24,7 +27,7 @@ function Authentication() {
         </section>
       </div>
     </main>
-  );
+  )
 }
 
-export default Authentication;
+export default Authentication

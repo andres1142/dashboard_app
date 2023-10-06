@@ -1,29 +1,29 @@
-"use client";
-import { FormEvent, useState } from "react";
-import { useRouter } from "next/navigation";
-import AuthContainer from "./AuthContainer";
-import AuthenticationProps from "@/types/";
-import appwriteService from "@/appwrite/config";
-import useAuth from "@/context/useAuth";
+"use client"
+import { FormEvent, useState } from "react"
+import { useRouter } from "next/navigation"
+import AuthContainer from "./AuthContainer"
+import AuthenticationProps from "@/types/"
+import appwriteService from "@/appwrite/config"
+import useAuth from "@/context/useAuth"
 
 function SignIn({ setShowLogin }: AuthenticationProps) {
-  const router = useRouter();
-  const { setAuthStatus } = useAuth();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const router = useRouter()
+  const { setAuthStatus } = useAuth()
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
 
   const login = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    e.preventDefault()
     try {
-      const session = await appwriteService.login({ email, password });
+      const session = await appwriteService.login({ email, password })
       if (session) {
-        setAuthStatus(true);
-        router.push("/");
+        setAuthStatus(true)
+        router.push("/")
       }
     } catch (error: any) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
 
   return (
     <AuthContainer>
@@ -57,9 +57,9 @@ function SignIn({ setShowLogin }: AuthenticationProps) {
 
         {/*Division*/}
         <div className="mt-14 flex justify-around items-center">
-          <div className="w-32 h-1 bg-primary_purple rounded-full" />
+          <div className="w-32 h-1 bg-secondary_white rounded-full" />
           <span>Or</span>
-          <div className="w-32 h-1 bg-primary_purple rounded-full" />
+          <div className="w-32 h-1 bg-secondary_white rounded-full" />
         </div>
 
         {/*Register button*/}
@@ -67,7 +67,7 @@ function SignIn({ setShowLogin }: AuthenticationProps) {
           <span>
             Don&apos;t have an account?
             <button
-              className="text-gray-400 ml-2 hover:underline"
+              className="text-secondary_white-200 ml-2 hover:underline"
               onClick={() => setShowLogin(false)}
             >
               Register
@@ -76,7 +76,7 @@ function SignIn({ setShowLogin }: AuthenticationProps) {
         </div>
       </form>
     </AuthContainer>
-  );
+  )
 }
 
-export default SignIn;
+export default SignIn
