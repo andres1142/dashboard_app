@@ -22,10 +22,10 @@ class AppwriteDatabaseService {
 
       // Where first parameter is the database unique ID and second parameter is the collection unique ID
       await databases.createDocument(
-        "651f59b0dcc46d545caf",
-        "651f59d4233b0ed25c30",
-        ID.unique(),
-        data
+        "651f59b0dcc46d545caf", // Dashboard Database ID
+        "651f59d4233b0ed25c30", // Weekly Widget Collection ID
+        ID.unique(), // Document ID
+        data // Document Data
       )
     } catch (e) {
       console.log(e)
