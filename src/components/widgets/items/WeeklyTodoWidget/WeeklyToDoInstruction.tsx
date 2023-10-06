@@ -1,8 +1,9 @@
 "use client"
 import { useState } from "react"
+import { Category } from "@/types"
+import appwriteDatabaseService from "@/appwrite/database.config"
 import BlurBackground from "../../common/BlurBackground"
 import CreateCategoryModal from "./CreateCategoryModal"
-import { Category } from "@/types"
 
 interface InstructionsProps {
   handleShowInstructions: () => void
@@ -17,6 +18,14 @@ function WeeklyToDoInstructions({ handleShowInstructions }: InstructionsProps) {
    */
   function handleCreateCategoryModal() {
     setShowCreateCategory(!showCreateCategory)
+  }
+
+  /**
+   * Handles the creation of the widget when calling appwrite database.
+   */
+  function handleCreateWidget() {
+    appwriteDatabaseService.CreateWeeklyWidget(categoryList)
+    handleShowInstructions()
   }
 
   /**
@@ -36,7 +45,7 @@ function WeeklyToDoInstructions({ handleShowInstructions }: InstructionsProps) {
     <BlurBackground>
       {/*Modal Container*/}
       <div className="w-1/2 inline-block bg-secondary_purple rounded-lg px-4 pt-5 pb-4 shadow-xl transform transition-all delay-1000">
-        <div className="flex flex-wrap justify-center gap-x-10 h-full w-full relative  pb-20 pt-10">
+        <div className="flex flex-wrap justify-center gap-x-10 h-full w-full relative  py-10">
           {/*Content Container*/}
           <div className="flex flex-col flex-start justify-center">
             <h2 className="text-4xl text-center font-motivaMedium text-primary_purple pb-8">
@@ -98,12 +107,18 @@ function WeeklyToDoInstructions({ handleShowInstructions }: InstructionsProps) {
           </div>
 
           {/*Close Button*/}
-          <button
-            className="absolute bottom-5 right-5 form-button w-24"
-            onClick={handleShowInstructions}
-          >
-            Cancel
-          </button>
+          <div className="w-full mt-10 flex justify-center gap-20 ">
+            <button
+              className="form-button w-24"
+              onClick={handleShowInstructions}
+            >
+              Cancel
+            </button>
+
+            <button className="form-button w-24" onClick={handleCreateWidget}>
+              Create
+            </button>
+          </div>
         </div>
       </div>
     </BlurBackground>
