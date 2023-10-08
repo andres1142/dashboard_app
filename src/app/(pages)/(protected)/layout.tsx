@@ -1,16 +1,13 @@
-"use client";
-import { AuthProvider } from "@/context/authContext";
-import React, { useEffect, useState } from "react";
-import appwriteService from "@/appwrite/config";
-import { Header } from "@/components";
+import { Navbar } from "@/components"
+import React from "react"
 
 const DashBoardLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div>
-      <Header />
-      <div className="pt-14">{children}</div>
+      <Navbar />
+      {children}
     </div>
-  );
-};
+  )
+}
 
-export default DashBoardLayout;
+export default DashBoardLayout

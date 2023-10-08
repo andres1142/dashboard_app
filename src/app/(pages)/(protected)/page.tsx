@@ -1,22 +1,19 @@
-"use client";
-import React from "react";
-import useAuth from "@/context/useAuth";
-import { redirect } from "next/navigation";
-import { EmptyWidget } from "@/components";
+"use client"
+import React from "react"
+import useAuth from "@/context/useAuth"
+import { redirect } from "next/navigation"
 
 function LandingPage() {
-  const { authStatus } = useAuth();
+  const { authStatus } = useAuth()
 
   // Checks if the user is authenticated, if not, redirect to login page
   if (!authStatus) {
-    redirect("/auth");
+    redirect("/auth")
+  } else {
+    redirect("/dashboard")
   }
 
-  return (
-    <div className="flex h-screen justify-center mt-20">
-      <EmptyWidget />
-    </div>
-  );
+  return <></>
 }
 
-export default LandingPage;
+export default LandingPage

@@ -1,13 +1,13 @@
-import { Client, Account, ID } from "appwrite";
-import { LoginUserAccount, CreateUserAccount } from "./types";
+import { Client, Account, ID, Models } from "appwrite"
+import { LoginUserAccount, CreateUserAccount } from "./types"
 
-const client = new Client();
+const client = new Client()
 
 client
   .setEndpoint("https://cloud.appwrite.io/v1")
-  .setProject("64fe4be24e7fc4b1499b");
+  .setProject("64fe4be24e7fc4b1499b")
 
-const account = new Account(client);
+const account = new Account(client)
 
 class AppwriteService {
   /**
@@ -23,14 +23,14 @@ class AppwriteService {
         userInfo.email,
         userInfo.password,
         userInfo.name
-      );
+      )
       if (userAccount) {
-        return this.login(userInfo);
+        return this.login(userInfo)
       } else {
-        return userAccount;
+        return userAccount
       }
     } catch (error: any) {
-      throw error;
+      throw error
     }
   }
 
@@ -42,12 +42,9 @@ class AppwriteService {
    */
   async login(userInfo: LoginUserAccount) {
     try {
-      return await account.createEmailSession(
-        userInfo.email,
-        userInfo.password
-      );
+      return await account.createEmailSession(userInfo.email, userInfo.password)
     } catch (error) {
-      throw error;
+      throw error
     }
   }
 
@@ -58,10 +55,10 @@ class AppwriteService {
    */
   async isLogged(): Promise<boolean> {
     try {
-      const data = await this.getCurrentUser();
-      return Boolean(data);
+      const data = await this.getCurrentUser()
+      return Boolean(data)
     } catch (error) {
-      return false;
+      return false
     }
   }
 
@@ -72,15 +69,27 @@ class AppwriteService {
    */
   async getCurrentUser() {
     try {
-      return account.get();
+      return account.get()
     } catch (error) {
-      console.log("getcurrentUser error: " + error);
+      console.log("getcurrentUser error: " + error)
     }
+  }
 
-    return null;
+  /**
+   * Removes the current user session
+   *
+   * @returns - true if session is removed, false otherwise
+   */
+
+  async logout() {
+    try {
+      return account.deleteSession("current")
+    } catch (error) {
+      throw error
+    }
   }
 }
 
-const appwriteService = new AppwriteService();
+const appwriteService = new AppwriteService()
 
-export default appwriteService;
+export default appwriteService

@@ -16,7 +16,11 @@ const ProtectedLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <AuthProvider value={{ authStatus, setAuthStatus }}>
-      {!loader && <main>{children}</main>}
+      {!loader ? (
+        <main>{children}</main>
+      ) : (
+        <div className="fixed inset-0 bg-black bg-opacity-60">Loading...</div>
+      )}
     </AuthProvider>
   )
 }
