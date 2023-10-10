@@ -1,10 +1,12 @@
 import { Transition, Menu } from "@headlessui/react"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+import useAuth from "@/context/useAuth"
 import appwriteService from "@/appwrite/config"
 import Image from "next/image"
 
 function Dropdown() {
+  const { setAuthStatus } = useAuth()
   const router = useRouter()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
@@ -14,6 +16,7 @@ function Dropdown() {
 
   async function handleLogout() {
     try {
+      setAuthStatus(false)
       await appwriteService.logout()
       router.replace("/auth")
     } catch (error: any) {
