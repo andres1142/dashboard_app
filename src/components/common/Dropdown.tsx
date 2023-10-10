@@ -49,7 +49,7 @@ function Dropdown() {
           leaveTo="transform opacity-0 scale-95"
         >
           <div
-            className="w-80 absolute text-white -right-8 top-4 z-10 border-l-2 border-b-2 border-t-2 border-secondary_gray bg-primary_black
+            className="w-80 absolute text-white -right-8 top-5 z-10 border-l-2 border-b-2 border-secondary_gray bg-primary_black
                           flex flex-col justify-center items-baseline gap-3 p-4"
           >
             <button className="text-secondary_white-200 text-xl">

@@ -6,6 +6,7 @@ import appwriteService from "@/appwrite/config"
 import AuthenticationProps from "@/types"
 import AuthContainer from "./AuthContainer"
 import useAuth from "@/context/useAuth"
+import Image from "next/image"
 
 function Register({ setShowLogin }: AuthenticationProps) {
   const { setAuthStatus } = useAuth()
@@ -16,10 +17,17 @@ function Register({ setShowLogin }: AuthenticationProps) {
   const [password, setPassword] = useState("")
   const [passwordConfirm, setPasswordConfirm] = useState("")
   const [error, setError] = useState("")
+  const [loading, setLoading] = useState(false)
 
   async function createAccount(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
+    debugger
+    if (!verifyData()) {
+      return
+    }
+
     try {
+      handleLoading()
       const session = await appwriteService.createUserAccount({
         name,
         email,
@@ -32,6 +40,10 @@ function Register({ setShowLogin }: AuthenticationProps) {
     } catch (error: any) {
       console.log(error)
     }
+  }
+
+  function handleLoading() {
+    setLoading(!loading)
   }
 
   /**
@@ -116,11 +128,23 @@ function Register({ setShowLogin }: AuthenticationProps) {
 
         {/*Submit button*/}
         <div className="mt-10 flex justify-around">
-          <input
-            className="form-button w-40"
-            type="submit"
-            value="Create Account"
-          />
+          {!loading ? (
+            <input
+              className="form-button w-40"
+              type="submit"
+              value="Create Account"
+            />
+          ) : (
+            <div className="form-button w-40 flex justify-center items-center">
+              <Image
+                src="/loading.svg"
+                alt="loading"
+                width={30}
+                height={30}
+                className="cursor-pointer animate-spin"
+              />
+            </div>
+          )}
         </div>
         {/*Error message*/}
         <div className="mt-5 font-motivaMedium text-center text-lg text-red-500">

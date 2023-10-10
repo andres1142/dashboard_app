@@ -4,16 +4,19 @@ import { useRouter } from "next/navigation"
 import AuthContainer from "./AuthContainer"
 import AuthenticationProps from "@/types/"
 import appwriteService from "@/appwrite/config"
+import Image from "next/image"
 import useAuth from "@/context/useAuth"
 
 function SignIn({ setShowLogin }: AuthenticationProps) {
   const router = useRouter()
   const { setAuthStatus } = useAuth()
+  const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
   const login = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setLoading(true)
     try {
       const session = await appwriteService.login({ email, password })
       if (session) {
@@ -23,6 +26,10 @@ function SignIn({ setShowLogin }: AuthenticationProps) {
     } catch (error: any) {
       console.log(error)
     }
+  }
+
+  function handleLoading() {
+    setLoading(!loading)
   }
 
   return (
@@ -51,8 +58,24 @@ function SignIn({ setShowLogin }: AuthenticationProps) {
         </div>
 
         {/*Submit button*/}
-        <div className="flex justify-center items-center mt-10  ">
-          <input className="form-button w-32 " type="submit" value="Sign In" />
+        <div className="flex justify-center items-center mt-10">
+          {!loading ? (
+            <input
+              className="form-button w-32 "
+              type="submit"
+              value="Sign In"
+            />
+          ) : (
+            <div className="form-button w-32 flex justify-center items-center">
+              <Image
+                src="/loading.svg"
+                alt="loading"
+                width={30}
+                height={30}
+                className="cursor-pointer animate-spin"
+              />
+            </div>
+          )}
         </div>
 
         {/*Division*/}
