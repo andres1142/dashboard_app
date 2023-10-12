@@ -11,4 +11,16 @@ interface Category {
   color: string
 }
 
-export type { Category }
+// Type for the task object
+interface TaskType {
+  id: number
+  name: string
+  categoryId: number
+  completed: boolean
+}
+
+interface MainTaskType extends TaskType {
+  subtasks: TaskType[]
+}
+
+export type { Category, MainTaskType, TaskType }

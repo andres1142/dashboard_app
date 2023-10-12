@@ -1,10 +1,10 @@
-import { EmptyWidget } from "@/components"
+import { WeeklyToDo } from "@/components"
 import React from "react"
 
 function page() {
   return (
-    <div className="flex h-screen justify-center mt-20">
-      <EmptyWidget />
+    <div className="flex h-screen justify-center mt-16">
+      <WeeklyToDo />
     </div>
   )
 }
